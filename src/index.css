@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body, #root {
+    height: 100%;
+  }
+  
+  body {
+    background: linear-gradient(135deg, 
+      #ffecd2 0%, 
+      #fcb69f 15%, 
+      #ffeaa7 30%, 
+      #74b9ff 50%, 
+      #a29bfe 70%, 
+      #fd79a8 85%, 
+      #fdcb6e 100%
+    );
+    background-size: 400% 400%;
+    animation: gradientFlow 20s ease infinite;
+    @apply text-gray-900;
+  }
+  
+  body.dark {
+    background: linear-gradient(135deg, 
+      #0f0c29 0%, 
+      #302b63 25%, 
+      #24243e 50%, 
+      #0f0c29 75%, 
+      #302b63 100%
+    );
+    background-size: 400% 400%;
+    animation: gradientFlow 20s ease infinite;
+    @apply text-gray-100;
+  }
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@layer components {
+  .card {
+    @apply bg-white/95 dark:bg-gray-800/95 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-5 border border-gray-100 dark:border-gray-700;
+    backdrop-filter: blur(10px);
+  }
+  
+  .btn-primary {
+    @apply px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-lg font-medium shadow-md hover:shadow-lg hover:scale-105 transition-all duration-200;
+  }
+  
+  .btn-secondary {
+    @apply px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg font-medium hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-200;
+  }
+  
+  .btn-danger {
+    @apply px-4 py-2 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-lg font-medium shadow-md hover:shadow-lg hover:scale-105 transition-all duration-200;
+  }
+  
+  .btn-success {
+    @apply px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-lg font-medium shadow-md hover:shadow-lg hover:scale-105 transition-all duration-200;
+  }
+  
+  .input-field {
+    @apply w-full px-4 py-2 border-2 border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-2 focus:ring-indigo-200 dark:focus:ring-indigo-900 transition-all duration-200 outline-none;
+  }
+  
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200;
+  }
+  
+  .progress-bar {
+    @apply w-full bg-gray-200 dark:bg-gray-700 h-3 rounded-full overflow-hidden;
+  }
+  
+  .progress-fill {
+    @apply h-full bg-gradient-to-r from-green-400 to-emerald-500 transition-all duration-500 rounded-full;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-in;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
