@@ -26,7 +26,8 @@ const corsOptions = {
     'http://localhost:5173',
     'http://localhost:3000',
     'https://anime-tracker.vercel.app',
-    'https://anime-tracker-*.vercel.app', // Allow all Vercel preview deployments
+    'https://anime-tracker-tejavelagala.vercel.app',
+    /https:\/\/anime-tracker-.*\.vercel\.app$/, // Allow all Vercel preview deployments
     process.env.FRONTEND_URL // Allow custom frontend URL from env
   ].filter(Boolean), // Remove undefined values
   credentials: true,
