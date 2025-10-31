@@ -14,6 +14,12 @@ dotenv.config();
 
 const app = express();
 
+// Debug: Log environment variables (remove after deployment works)
+console.log('🔍 Environment Check:');
+console.log('NODE_ENV:', process.env.NODE_ENV);
+console.log('MONGODB_URI exists:', !!process.env.MONGODB_URI);
+console.log('MONGODB_URI (first 30 chars):', process.env.MONGODB_URI?.substring(0, 30));
+
 // CORS configuration for production
 const corsOptions = {
   origin: [
@@ -32,9 +38,16 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/anime_tracker')
-  .then(() => console.log('✅ MongoDB Connected'))
-  .catch((err) => console.error('❌ MongoDB Connection Error:', err));
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/anime_tracker';
+console.log('🔗 Attempting to connect to MongoDB...');
+console.log('Connection string starts with:', MONGODB_URI.substring(0, 20));
+
+mongoose.connect(MONGODB_URI)
+  .then(() => console.log('✅ MongoDB Connected Successfully'))
+  .catch((err) => {
+    console.error('❌ MongoDB Connection Error:', err.message);
+    console.error('Full error:', err);
+  });
 
 // Routes
 app.use('/api/auth', authRoutes);
