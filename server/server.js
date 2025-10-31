@@ -14,8 +14,21 @@ dotenv.config();
 
 const app = express();
 
+// CORS configuration for production
+const corsOptions = {
+  origin: [
+    'http://localhost:5173',
+    'http://localhost:3000',
+    'https://anime-tracker.vercel.app',
+    'https://anime-tracker-*.vercel.app', // Allow all Vercel preview deployments
+    process.env.FRONTEND_URL // Allow custom frontend URL from env
+  ].filter(Boolean), // Remove undefined values
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // MongoDB Connection
